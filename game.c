@@ -31,6 +31,9 @@ int main() {
       board = malloc(n * sizeof(char *));
     for (int i = 0; i < n; i++) {
         board[i] = malloc(n * sizeof(char));
+	for (int j = 0; j < n; j++)
+            board[i][j] = ' ';
+
     }
 
     displayboard();
@@ -54,13 +57,10 @@ void initialization() {
 	printf("================================\n");
 	printf("Enter board size N(3 <= N <= 10): ");
 	scanf("%d", &n);
+	size = n;
 }
 
 void displayboard() {
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            board[i][j] = ' ';
-
     printf("\n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
