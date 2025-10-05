@@ -4,74 +4,74 @@
 
 FILE *logfile;
 int n;
-char **board;
 int size;
+char **board;
 
 void initialization();
 void displayboard();
 void logmove(char symbol, int row, int col);
-void playmove(char symbol);
+void playermove(char symbol);
 void computermove(char symbol);
 void playgame(int mode);
 int validmove(int row, int col);
 int checkwin(char symbol);
 int checkdraw();
 
-int main () {
-	srand(time(NULL));
+int main() {
+    srand(time(NULL));
 
-	logfile = fopen("game_log.txt", "w");
-	if(!logfile) {
-		printf("Error openening log file.\n");
-	return 1;
+    logfile = fopen("game_log.txt", "w");
+    if (!logfile) {
+        printf("Error opening log file.\n");
+        return 1;
+    }
+
+    initialization();
+
+      board = malloc(n * sizeof(char *));
+    for (int i = 0; i < n; i++) {
+        board[i] = malloc(n * sizeof(char));
+    }
+
+    displayboard();
+
+    int mode;
+    printf("Choose the game mode:\n");
+    printf("1. User vs User\n");
+    printf("2. User vs Computer\n");
+    printf("3. Multiplayers\n");
+    scanf("%d", &mode);
+ 
+    playgame(mode);
+
+    fclose(logfile);
+
+    return 0;
 }
 
-initialization();
-
-board = malloc(n* sizeof(char*));
-for (int i =0; i < n; i++) {
-	board[i] = malloc(n * sizeof(char));
-
+void initialization() {
+        printf("Welcome to THe TIC TAC TOE GAME!\n");
+	printf("================================\n");
+	printf("Enter board size N(3 <= N <= 10): ");
+	scanf("%d", &n);
 }
 
-displayboard();
-
-int mode;
-printf("Choose the game mode:\n");
-printf("1.User vs User\n");
-printf("2.User vs Computer\n");
-printf("3.Multiplayers\n");
-scanf("%d", &mode);
-
-playgame(mode);
-fclose(logfile);
-
-return 0;
-
-void initialization () {
-	printf("Welcome to the TIC TAC TOE GAME!\n");
-        printf("================================\n");
-        printf("Enter board size N(3 <= N <= 10):");
-        scanf("%d", &n);
-
-}
 void displayboard() {
-    size = n;
-    for (int i = 0; i < size; i++)
-        for (int j = 0; j < size; j++)
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
             board[i][j] = ' ';
 
     printf("\n");
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
             printf(" %c ", board[i][j]);
-            if (j < size - 1) printf("|");
+            if (j < n - 1) printf("|");
         }
         printf("\n");
-        if (i < size - 1) {
-            for (int j = 0; j < size; j++) {
+        if (i < n - 1) {
+            for (int j = 0; j < n; j++) {
                 printf("---");
-                if (j < size - 1) printf("+");
+                if (j < n - 1) printf("+");
             }
             printf("\n");
         }
@@ -79,15 +79,14 @@ void displayboard() {
     printf("\n");
 }
 
-
 int validmove(int row, int col) {
-    return row >= 0 && row < size && col >= 0 && col < size && board[row][col] == ' ';
+    return row >= 0 && row < n && col >= 0 && col < n && board[row][col] == ' ';
 }
-
 
 void logmove(char symbol, int row, int col) {
-    fprintf(logfile, "Player %c moved to (%d, %d)\n", symbol, row, col);
+    fprintf(logfile, "Player %c moved to (%d, %d)\n", symbol, row + 1, col + 1);
 }
+
 
 int checkwin(char symbol) {
     for (int i = 0; i < size; i++) {
@@ -209,10 +208,6 @@ void playgame(int mode) {
 
         turn++;
     }
-}
-
-
-    return 0;
 }
 
 

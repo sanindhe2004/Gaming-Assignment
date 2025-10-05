@@ -1,0 +1,39 @@
+Player X moved to (2, 2)
+Player X wins!
+Current Board:
+      
+  X   
+      
+---------------------
+Current Board:
+    O 
+  X   
+      
+---------------------
+Current Board:
+Z   O 
+  X   
+      
+---------------------
+Current Board:
+Z X O 
+  X   
+      
+---------------------
+Current Board:
+Z X O 
+  X   
+    O 
+---------------------
+Current Board:
+Z X O 
+Z X   
+    O 
+---------------------
+Current Board:
+Z X O 
+Z X   
+  X O 
+---------------------
+Player X wins!
+
